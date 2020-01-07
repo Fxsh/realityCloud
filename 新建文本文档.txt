@@ -1,0 +1,90 @@
+#  http://localhost:9001/zuul-9001/provider-8001/dept/list
+server:
+  port: 9001
+spring:
+  application:
+    name: zuul-9001
+  profiles: dev
+eureka:
+  instance:
+    hostname: zuul-9001-id
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka,http://eureka7003.com:7003/eureka
+info:
+  app.name: zuul-9001
+zuul:
+  prefix: /zuul-9001
+  routes:
+    provider-8001: /provider-8001/**
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+ribbon:
+  ConnectTimeout: 3000
+  ReadTimeout: 60000
+---
+server:
+  port: 9002
+spring:
+  application:
+    name: zuul-9001
+  profiles: prod
+eureka:
+  instance:
+    hostname: zuul-9002-id
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka,http://eureka7003.com:7003/eureka
+info:
+  app.name: zuul-9001
+zuul:
+  prefix: /zuul-9001
+  routes:
+    provider-8001: /provider-8001/**
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+ribbon:
+  ConnectTimeout: 3000
+  ReadTimeout: 60000
+---
+server:
+  port: 9003
+spring:
+  application:
+    name: zuul-9001
+  profiles: beta
+eureka:
+  instance:
+    hostname: zuul-9003-id
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka,http://eureka7003.com:7003/eureka
+info:
+  app.name: zuul-9001
+zuul:
+  prefix: /zuul-9001
+  routes:
+    provider-8001: /provider-8001/**
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+ribbon:
+  ConnectTimeout: 3000
+  ReadTimeout: 60000
