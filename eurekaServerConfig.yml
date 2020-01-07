@@ -1,0 +1,44 @@
+server:
+  port: 5001
+spring:
+  application:
+    name: eureka-5001
+  profiles: dev
+eureka:
+  instance:
+    hostname: eureka-5001-id #右边名字
+  client:
+    service-url:
+      defaultZone: http://eureka5002.com:5002/eureka,http://eureka7001.com:7001/eureka,http://eureka5003.com:5003/eureka
+    register-with-eureka: false
+    fetch-registry: false
+---
+server:
+  port: 5002
+spring:
+  profiles: prod
+  application:
+    name: eureka-5002
+eureka:
+  instance:
+    hostname: eureka-5002-id #右边名字
+  client:
+    service-url:
+      defaultZone: http://eureka5001.com:5001/eureka,http://eureka7001.com:7001/eureka,http://eureka5003.com:5003/eureka
+    register-with-eureka: false
+    fetch-registry: false
+---
+server:
+  port: 5003
+spring:
+  profiles: beta
+  application:
+    name: eureka-5003
+eureka:
+  instance:
+    hostname: eureka-5003-id #右边名字
+  client:
+    service-url:
+      defaultZone: http://eureka5001.com:5001/eureka,http://eureka5002.com:5002/eureka,http://eureka7001.com:7001/eureka
+    register-with-eureka: false
+    fetch-registry: false
