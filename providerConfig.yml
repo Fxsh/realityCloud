@@ -1,0 +1,47 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: provider-8001
+  profiles: dev
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka5002.com:5002/eureka,http://eureka7001.com:7001/eureka,http://eureka5003.com:5003/eureka,http://eureka5001.com:5001/eureka
+  instance:
+    instance-id: dept-8001.com
+    prefer-ip-address: true
+info:
+  app.name: provider-8001
+---
+server:
+  port: 8002
+spring:
+  application:
+    name: provider-8001
+  profiles: prod
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka5002.com:5002/eureka,http://eureka7001.com:7001/eureka,http://eureka5003.com:5003/eureka,http://eureka5001.com:5001/eureka
+  instance:
+    instance-id: dept-8002.com
+    prefer-ip-address: true
+info:
+  app.name: provider-8002
+---
+server:
+  port: 8003
+spring:
+  application:
+    name: provider-8001
+  profiles: beta
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka5002.com:5002/eureka,http://eureka7001.com:7001/eureka,http://eureka5003.com:5003/eureka,http://eureka5001.com:5001/eureka
+  instance:
+    instance-id: dept-8003.com
+    prefer-ip-address: true
+info:
+  app.name: provider-8003
